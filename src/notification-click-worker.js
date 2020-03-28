@@ -1,39 +1,12 @@
-importScripts('./ngsw-worker.js');
+(function () {
+  'use strict';
 
-self.addEventListener('notificationclick', (event) => {
-  console.log('On notification click: ', event.notification.tag);
-  event.notification.close();
-
-  // This looks to see if the current is already open and
-  // focuses if it is
-  event.waitUntil(clients.matchAll({
-    type: "window"
-  }).then(function(clientList) {
-    for (var i = 0; i < clientList.length; i++) {
-      var client = clientList[i];
-      if (client.url === event.notification.data.url && 'focus' in client)
-        return client.focus();
+  self.addEventListener('notificationclick', (event) => {
+    console.log("This is custom service worker notificationclick method.");
+    console.log('Notification details: ', event.notification);
+    // Write the code to open
+    if (clients.openWindow && event.notification.data.url) {
+      event.waitUntil(clients.openWindow(event.notification.data.url));
     }
-    if (clients.openWindow)
-      return clients.openWindow(event.notification.data.url);
-  }));
-});
-
-self.onnotificationclick = function(event) {
-  console.log('On notification click: ', event.notification.tag);
-  event.notification.close();
-
-  // This looks to see if the current is already open and
-  // focuses if it is
-  event.waitUntil(clients.matchAll({
-    type: "window"
-  }).then(function(clientList) {
-    for (var i = 0; i < clientList.length; i++) {
-      var client = clientList[i];
-      if (client.url === event.notification.data.url && 'focus' in client)
-        return client.focus();
-    }
-    if (clients.openWindow)
-      return clients.openWindow(event.notification.data.url);
-  }));
-};
+  });}
+());
