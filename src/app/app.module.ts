@@ -19,7 +19,7 @@ import {MessagingService} from './service/messaging.service';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFireMessagingModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [MessagingService],
   bootstrap: [AppComponent]
