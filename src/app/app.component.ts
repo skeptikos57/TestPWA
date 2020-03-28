@@ -1,5 +1,6 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, HostListener, OnInit} from '@angular/core';
 import { MessagingService } from './service/messaging.service';
+import {SwPush} from '@angular/service-worker';
 
 @Component({
   selector: 'app-root',
@@ -7,19 +8,27 @@ import { MessagingService } from './service/messaging.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'push-notification';
   message;
-
   deferredPrompt: any;
   showButton = false;
 
-  constructor(private messagingService: MessagingService) { }
+  constructor(
+    private messagingService: MessagingService,
+    private changeDetectorRef: ChangeDetectorRef,
+    private swPush: SwPush
+  ) { }
 
   ngOnInit() {
     const userId = 'user001';
     this.messagingService.requestPermission(userId);
     this.messagingService.receiveMessage();
-    this.message = this.messagingService.currentMessage;
+    this.messagingService.currentMessage.subscribe((value) => {
+      this.message = value;
+      this.changeDetectorRef.detectChanges();
+    });
+    this.swPush.notificationClicks.subscribe((value) => {
+      window.open(value.notification.data.url);
+    })
   }
 
   @HostListener('window:beforeinstallprompt', ['$event'])

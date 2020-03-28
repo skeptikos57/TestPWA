@@ -7,7 +7,7 @@ import {AngularFireDatabase} from '@angular/fire/database';
 
 @Injectable()
 export class MessagingService {
-  currentMessage = new BehaviorSubject(null);
+  currentMessage = new BehaviorSubject<any>(null);
   constructor(
     private angularFireDB: AngularFireDatabase,
     private angularFireAuth: AngularFireAuth,
