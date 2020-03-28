@@ -14,8 +14,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private messagingService: MessagingService,
-    private changeDetectorRef: ChangeDetectorRef,
-    private swPush: SwPush
+    private changeDetectorRef: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
@@ -26,9 +25,6 @@ export class AppComponent implements OnInit {
       this.message = value;
       this.changeDetectorRef.detectChanges();
     });
-    this.swPush.notificationClicks.subscribe((value) => {
-      window.open(value.notification.data.url);
-    })
   }
 
   @HostListener('window:beforeinstallprompt', ['$event'])
