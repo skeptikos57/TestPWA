@@ -1,6 +1,5 @@
 import {ChangeDetectorRef, Component, HostListener, OnInit} from '@angular/core';
 import { MessagingService } from './service/messaging.service';
-import {SwPush} from '@angular/service-worker';
 
 @Component({
   selector: 'app-root',
@@ -36,7 +35,6 @@ export class AppComponent implements OnInit {
     this.deferredPrompt = e;
     this.showButton = true;
   }
-
 
   addToHomeScreen() {
     // hide our user interface that shows our A2HS button
