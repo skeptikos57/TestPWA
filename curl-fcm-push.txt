@@ -1,0 +1,16 @@
+curl --location --request POST 'https://fcm.googleapis.com/fcm/send' \
+--header 'Authorization: key=AAAAtBVYEnw:APA91bFFgxRlcow8dtvhQO2qleuJXuqBNQw3V2xM1cHOT7pi3JO6biDM97JLfU15m3e6o9fhhlh9BkDiYeIdo3VXf13zIo0CaqoBR40YTDIJtLolhsYWrE4tEI4mUlAcNJe91-HRB1mQ' \
+--header 'Content-Type: application/json' \
+--header 'Content-Type: text/plain' \
+--data-raw '{
+	"notification": {
+		"title": "Test title",
+		"body": "Notification test",
+    	"data": {
+        	"coucou" : "ça va ?",
+        	"Hello": "World !"
+    	},
+    	"click_action" : "./"
+	},
+	"to" : "cjxu9ISqSvI:APA91bGZ2xIWBZ7mQ3lXGqOE3iIq6xMi-NSKMsfiY3z9263RSIW0LwYvgiNsvh6CKeAf-WWA7mpcq6d2ADmAXJlFrC1SfdzVIDK6io3z7zDd0VxZuB_RD2kjDmwZmPCXsVHXUR4W7Xcc"
+}'
