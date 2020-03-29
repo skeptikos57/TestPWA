@@ -23,6 +23,7 @@
               "src/favicon.ico",
               "src/assets",
               "src/firebase-messaging-sw.js",
+              "src/notification-click-worker.js",
               "src/manifest.webmanifest"
             ],
             "styles": [
