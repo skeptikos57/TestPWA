@@ -17,7 +17,7 @@ import {ServiceWorkerModule} from '@angular/service-worker';
   ],
   imports: [
     BrowserModule,
-    ServiceWorkerModule.register('notification-click-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     AppRoutingModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
