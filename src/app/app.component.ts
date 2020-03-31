@@ -17,8 +17,7 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const userId = 'user001';
-    this.messagingService.requestPermission(userId);
+    this.messagingService.requestPermission();
     this.messagingService.receiveMessage();
     this.messagingService.currentMessage.subscribe((value) => {
       this.message = value;
