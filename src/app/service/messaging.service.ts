@@ -24,7 +24,6 @@ export class MessagingService {
   /**
    * update token in firebase database
    *
-   * @param userId userId as a key
    * @param token token as a value
    */
   updateToken(token) {

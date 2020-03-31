@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
       this.message = value;
       this.changeDetectorRef.detectChanges();
     });
+    this.showPopupForIos();
   }
 
   @HostListener('window:beforeinstallprompt', ['$event'])
@@ -50,5 +51,24 @@ export class AppComponent implements OnInit {
         }
         this.deferredPrompt = null;
       });
+  }
+
+  //ts-ignore
+  showPopupForIos() {
+    // Detects if device is on iOS
+    const isIos = () => {
+      const userAgent = window.navigator.userAgent.toLowerCase();
+      return /iphone|ipad|ipod/.test( userAgent );
+    };
+
+    // Detects if device is in standalone mode
+    // @ts-ignore
+    const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
+
+    // Checks if should display install popup notification:
+    if (isIos() && !isInStandaloneMode()) {
+      // @ts-ignore
+      this.setState({ showInstallMessage: true });
+    }
   }
 }
